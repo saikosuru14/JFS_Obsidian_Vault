@@ -1,0 +1,243 @@
+{
+  "main": {
+    "id": "b4f3fdc5046b8149",
+    "type": "split",
+    "children": [
+      {
+        "id": "b8b15c4fabfa872d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "85276b38839bc10a",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4205cb3bd29602c0",
+    "type": "split",
+    "children": [
+      {
+        "id": "c007d60747ea2f1f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a687d59c58ed1ae5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "a182ef2620fb882c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "dd21c1013b1ab4fd",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "df6fbb536da9095c",
+    "type": "split",
+    "children": [
+      {
+        "id": "c698a617652d974f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "12e625fd9ffdd96c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "a292a5fb3735c802",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "15 Bases/Java.base",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Java"
+            }
+          },
+          {
+            "id": "466aaac4be33f99e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3375f5cd4da21d91",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "a9ff1d9daafbca3d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "15 Bases/Java.base",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Java"
+            }
+          },
+          {
+            "id": "f7ef2d5d443f99f0",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "f34d3b6ade78d94f",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 6
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "85276b38839bc10a",
+  "lastOpenFiles": [
+    "Untitled.base",
+    "Excalidraw/Spring_Startup_Internals.excalidraw.md",
+    "Excalidraw/SpringBeanLifeCycle.excalidraw.md",
+    "2026-07-19.md",
+    "Untitled.canvas",
+    "04 Spring/01 Spring Core/07 Bean Lifecycle.md",
+    "Excalidraw/00 Excalidraw Index.md",
+    "04 Spring/03 Spring MVC/03 Request Lifecycle.md",
+    "03 Java/05 Collections Framework/01 Collections Framework.md",
+    "03 Java/05 Collections Framework/00 Collections Framework Index.md",
+    "03 Java/05 Collections Framework/03 List.md",
+    "03 Java/05 Collections Framework/02 Iterator.md",
+    "03 Java/05 Collections Framework/04 ArrayList.md",
+    "_work/audit.ps1",
+    "_work",
+    "03 Java/04 Core Java/11 Comparable vs Comparator.md",
+    "03 Java/04 Core Java/04 hashCode().md",
+    "03 Java/05 Collections Framework/05 LinkedList.md",
+    "03 Java/05 Collections Framework/13 HashMap.md",
+    "03 Java/05 Collections Framework/07 Set.md",
+    "03 Java/00 Java Index.md",
+    "_work/scan_chars.ps1",
+    "_work/link_audit.ps1",
+    "List.md",
+    "16 Bases/Performance.base",
+    "16 Bases/Reflection.base",
+    "16 Bases/Exception Handling.base",
+    "16 Bases/Streams.base",
+    "16 Bases/Memory.base",
+    "16 Bases/JVM.base",
+    "03 Java/14 Best Practices/00 Best Practices Index.md",
+    "03 Java/13 JVM Performance/00 JVM Performance Index.md",
+    "03 Java/10 Reflection & Annotations/00 Reflection & Annotations Index.md",
+    "03 Java/06 Exception Handling/00 Exception Handling Index.md",
+    "03 Java/05 Collections Framework/17 ConcurrentHashMap.md",
+    "03 Java/14 Best Practices/03 Performance and Memory Best Practices.md",
+    "03 Java/14 Best Practices/02 API and Class Design.md"
+  ]
+}

@@ -1,0 +1,32 @@
+filters:
+  and:
+    - 'file.inFolder("03 Java")'
+    - 'note.module == "Streams API"'
+properties:
+  note.order:
+    displayName: "#"
+  file.name:
+    displayName: Topic
+  note.module:
+    displayName: Module
+  note.difficulty:
+    displayName: Difficulty
+  note.status:
+    displayName: Status
+  note.interview:
+    displayName: Interview
+  note.revision:
+    displayName: Revision
+views:
+  - type: table
+    name: Streams API - Learning Order
+    order:
+      - note.order
+      - file.name
+      - note.difficulty
+      - note.status
+      - note.interview
+      - note.revision
+    sort:
+      - property: note.order
+        direction: ASC

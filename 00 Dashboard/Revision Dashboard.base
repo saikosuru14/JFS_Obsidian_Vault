@@ -1,0 +1,33 @@
+filters:
+  and:
+    - 'note.status == "Need Revision"'
+properties:
+  note.order:
+    displayName: "#"
+  file.name:
+    displayName: Note
+  note.module:
+    displayName: Module
+  note.status:
+    displayName: Status
+  note.difficulty:
+    displayName: Difficulty
+  note.priority:
+    displayName: Priority
+  note.interview:
+    displayName: Interview
+  note.revision:
+    displayName: Revision
+  note.domain:
+    displayName: Domain
+views:
+  - type: table
+    name: Needs Revision
+    order:
+      - note.domain
+      - file.name
+      - note.revision
+      - note.status
+    sort:
+      - property: note.domain
+        direction: ASC

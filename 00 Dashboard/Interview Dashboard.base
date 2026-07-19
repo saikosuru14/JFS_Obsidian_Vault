@@ -1,0 +1,36 @@
+filters:
+  and:
+    - 'note.interview >= 4'
+properties:
+  note.order:
+    displayName: "#"
+  file.name:
+    displayName: Note
+  note.module:
+    displayName: Module
+  note.status:
+    displayName: Status
+  note.difficulty:
+    displayName: Difficulty
+  note.priority:
+    displayName: Priority
+  note.interview:
+    displayName: Interview
+  note.revision:
+    displayName: Revision
+  note.domain:
+    displayName: Domain
+views:
+  - type: table
+    name: High-Value Interview Topics
+    order:
+      - note.domain
+      - file.name
+      - note.interview
+      - note.difficulty
+      - note.status
+    sort:
+      - property: note.interview
+        direction: DESC
+      - property: note.domain
+        direction: ASC

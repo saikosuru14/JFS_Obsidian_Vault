@@ -1,0 +1,28 @@
+filters:
+  and:
+    - 'file.inFolder("17 Resources")'
+properties:
+  note.order:
+    displayName: "#"
+  file.name:
+    displayName: Resource
+  note.status:
+    displayName: Status
+  note.priority:
+    displayName: Priority
+  note.tags:
+    displayName: Tags
+views:
+  - type: table
+    name: Resources
+    order:
+      - note.order
+      - file.name
+      - note.status
+      - note.priority
+      - note.tags
+    sort:
+      - property: note.order
+        direction: ASC
+      - property: file.name
+        direction: ASC

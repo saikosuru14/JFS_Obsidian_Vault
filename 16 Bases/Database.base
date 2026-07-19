@@ -1,0 +1,37 @@
+filters:
+  and:
+    - 'file.inFolder("02 Computer Science/06 Database Fundamentals")'
+properties:
+  note.order:
+    displayName: "#"
+  file.name:
+    displayName: Note
+  note.module:
+    displayName: Module
+  note.status:
+    displayName: Status
+  note.difficulty:
+    displayName: Difficulty
+  note.priority:
+    displayName: Priority
+  note.interview:
+    displayName: Interview
+  note.revision:
+    displayName: Revision
+views:
+  - type: table
+    name: Databases - Learning Order
+    order:
+      - note.order
+      - file.name
+      - note.module
+      - note.status
+      - note.difficulty
+      - note.priority
+      - note.interview
+      - note.revision
+    sort:
+      - property: note.order
+        direction: ASC
+      - property: file.name
+        direction: ASC

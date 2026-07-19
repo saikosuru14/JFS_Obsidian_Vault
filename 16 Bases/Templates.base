@@ -1,0 +1,17 @@
+filters:
+  and:
+    - 'file.inFolder("15 Templates")'
+properties:
+  file.name:
+    displayName: Template
+  note.tags:
+    displayName: Tags
+views:
+  - type: table
+    name: Templates
+    order:
+      - file.name
+      - note.tags
+    sort:
+      - property: file.name
+        direction: ASC
