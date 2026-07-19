@@ -24,7 +24,7 @@ tags:
 The last-mile revision layer: one-screen cheat sheets for rapid recall, plus a pre-interview checklist. This folder is **only** for revision material — roadmaps live in [[Learning Roadmaps]] and progress dashboards in [[Dashboard]].
 
 ## Contents
-1. [[Cheat Sheets Index|Cheat Sheets]] — one-page recall sheet per technology (Java, Spring, SQL, Git, Kafka, Docker, Kubernetes, AWS, System Design).
+1. [[Cheat Sheets Index|Cheat Sheets]] — one-page recall sheet per technology (Java, Spring, SQL, Microservices, Kafka, Docker, Kubernetes, AWS, System Design, Git).
 2. [[Interview Revision]] — the last-mile pre-interview checklist.
 
 ## How to Revise

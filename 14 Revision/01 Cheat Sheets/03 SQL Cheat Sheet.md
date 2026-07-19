@@ -18,45 +18,116 @@ tags:
 
 # SQL Cheat Sheet
 
-> Mid-level recall for databases — indexing, transactions, and query tuning.
+> Interview-ready revision for databases ([[Database Fundamentals]]) (4–5 YOE). Concepts, code, tables, and Q&A with answers.
 
-## Execution Order
-`FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT`
-(so column aliases from SELECT aren't visible in WHERE).
+---
 
-## Indexing (interview gold)
-- B-tree serves equality, range, prefix, and ORDER BY. Hash index = equality only.
-- **Composite index = leftmost-prefix rule**: `(a,b,c)` helps `a`, `a,b`, `a,b,c` — not `b` alone.
-- **Covering index**: query served entirely from the index (no table lookup).
-- Index selectivity matters; low-cardinality columns rarely help. Indexes slow writes + cost storage.
-- A function on a column (`WHERE UPPER(x)=…`) kills index use → use expression/functional indexes.
+## 1. Logical Execution Order
+`FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT/OFFSET`
+Implication: `SELECT` aliases aren't visible in `WHERE`/`GROUP BY`; `WHERE` filters rows, `HAVING` filters groups.
 
-## Query Tuning
-- Read `EXPLAIN [ANALYZE]`: look for seq scans on big tables, bad row estimates, nested-loop vs hash join.
-- Avoid `SELECT *`; filter early; batch writes; keyset pagination (`WHERE id > :last LIMIT n`) over `OFFSET` for deep pages.
-- N+1 in ORMs → join/fetch or batch.
+## 2. Joins
+| Join | Returns |
+|------|---------|
+| INNER | rows matching both sides |
+| LEFT/RIGHT | all of one side + matches (NULLs otherwise) |
+| FULL OUTER | everything, matched where possible |
+| CROSS | cartesian product |
+| Self | table joined to itself (hierarchies) |
+Anti-join: `LEFT JOIN … WHERE r.id IS NULL`. Semi-join: `EXISTS (…)`.
 
-## Transactions / Isolation
-- ACID. Isolation vs anomalies: Read Uncommitted (dirty), Read Committed (default in PG), Repeatable Read (no non-repeatable; PG also blocks phantoms via MVCC), Serializable (full).
-- **MVCC** (PostgreSQL/InnoDB): readers don't block writers; each txn sees a snapshot.
-- Locking: row locks, `SELECT … FOR UPDATE` (pessimistic), version column (optimistic). Deadlocks → consistent lock order, short txns, retry on deadlock error.
+## 3. Indexing (interview gold)
+B-tree indexes serve equality, range, prefix, `ORDER BY`, `MIN/MAX`.
+- **Composite index leftmost-prefix:** `(a,b,c)` helps `a`, `(a,b)`, `(a,b,c)`, not `b` alone or `c` alone.
+- **Covering index:** all selected columns are in the index → no table lookup ("index-only scan").
+- **Clustered vs non-clustered:** InnoDB stores rows in PK order (clustered); secondary indexes store the PK and require a lookup. Keep PK small/monotonic.
+- **Partial/functional indexes:** `CREATE INDEX ... WHERE active`, or on `LOWER(email)`.
 
-## Modeling
-- Normalize to 3NF to remove redundancy; **denormalize** deliberately for read-heavy paths (accept write/consistency cost).
-- Scaling: read replicas (read scaling), partitioning (by range/hash), sharding (write scaling; needs a shard key).
+**Why an index isn't used:** function on the column (`WHERE UPPER(x)=…`), leading wildcard (`LIKE '%x'`), implicit type cast, low selectivity, or a small table (seq scan is cheaper).
 
-## SQL vs NoSQL
-- SQL: strong schema, ACID, joins, ad-hoc queries. NoSQL: flexible schema, horizontal scale, denormalized access patterns, eventual consistency. Choose by access pattern, not hype.
+## 4. Query Tuning
+```sql
+EXPLAIN ANALYZE
+SELECT o.id FROM orders o WHERE o.customer_id = 42 AND o.status = 'NEW';
+```
+Read the plan: **Seq Scan on a big table** = missing/unused index; check row-estimate accuracy (stale stats → `ANALYZE`); join type (nested loop for few rows, hash/merge for many). Avoid `SELECT *`; filter early; batch writes.
 
-## Sharp Interview Answers
-- Why isn't my index used? leftmost-prefix miss, function on column, low selectivity, small table.
-- `WHERE` vs `HAVING`; `DELETE` vs `TRUNCATE` vs `DROP`.
-- Offset vs keyset pagination; how MVCC avoids read locks.
-- Optimistic vs pessimistic locking; how to handle deadlocks.
+**Keyset pagination** (fast deep pages) beats `OFFSET` (which scans+discards):
+```sql
+SELECT * FROM orders WHERE id > :last_id ORDER BY id LIMIT 20;
+```
+
+**Window functions** (no collapsing rows):
+```sql
+SELECT id, amount,
+       ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY created DESC) AS rn,
+       SUM(amount)  OVER (PARTITION BY customer_id) AS cust_total
+FROM orders;
+```
+
+## 5. Transactions & Isolation
+ACID. Isolation levels vs anomalies:
+| Level | Dirty read | Non-repeatable | Phantom |
+|-------|-----------|----------------|---------|
+| Read Uncommitted | ✅ | ✅ | ✅ |
+| Read Committed (PG default) | ❌ | ✅ | ✅ |
+| Repeatable Read (MySQL InnoDB default) | ❌ | ❌ | ❌* |
+| Serializable | ❌ | ❌ | ❌ |
+
+\*InnoDB RR blocks phantoms via gap locks; PG RR (snapshot) prevents non-repeatable but allows some phantoms.
+
+**MVCC** (PostgreSQL, InnoDB): each transaction sees a consistent snapshot; **readers don't block writers** and vice versa. Old row versions are cleaned by vacuum/purge.
+
+## 6. Locking & Deadlocks
+- Shared (read) vs exclusive (write); row vs table. `SELECT … FOR UPDATE` = pessimistic row lock; `@Version` column = optimistic.
+- **Deadlock**: two txns lock rows in opposite order → DB kills one (`deadlock detected`). Prevent: consistent lock ordering, short transactions, retry on deadlock error.
+
+## 7. Modeling & Scaling
+- Normalize to 3NF (remove redundancy/anomalies); **denormalize deliberately** for read-heavy paths (accept write cost + consistency handling).
+- **Replication** (read replicas → read scaling, HA) vs **partitioning** (split one table by range/hash/list) vs **sharding** (split across nodes; needs a shard key that avoids hot spots).
+- Upsert: PG `INSERT … ON CONFLICT (id) DO UPDATE`; MySQL `ON DUPLICATE KEY UPDATE`.
+
+## 8. SQL vs NoSQL
+SQL: strong schema, ACID, joins, ad-hoc queries. NoSQL: flexible schema, horizontal scale, denormalized to access patterns, often eventual consistency. Choose by access pattern and consistency needs.
+
+---
+
+## 9. Interview Q&A (with answers)
+
+**Q: Why isn't my index being used?**
+A: Common causes — a function/cast on the indexed column, a leading `%` in `LIKE`, breaking the leftmost-prefix rule on a composite index, low selectivity (optimizer prefers a scan), or stale statistics giving bad estimates.
+
+**Q: Clustered vs non-clustered index?**
+A: A clustered index defines the physical row order (InnoDB = the PK); there's one per table. Non-clustered/secondary indexes are separate structures pointing back to the row (via PK in InnoDB), so they may need an extra lookup unless the index is covering.
+
+**Q: Explain isolation levels and the anomalies they prevent.**
+A: Read Committed stops dirty reads; Repeatable Read also stops non-repeatable reads; Serializable stops phantoms too (full isolation). Higher levels cost concurrency.
+
+**Q: How does MVCC avoid read locks?**
+A: Writers create new row versions instead of overwriting; readers see the snapshot valid at their transaction start, so reads never block writes. Cleanup happens via vacuum (PG) / purge (InnoDB).
+
+**Q: How do you handle deadlocks?**
+A: Acquire locks in a consistent order, keep transactions short, and retry the victim transaction on the deadlock error. Monitor with the DB's deadlock log.
+
+**Q: OFFSET vs keyset pagination?**
+A: `OFFSET n` scans and discards n rows (slow for deep pages); keyset (`WHERE id > :last`) uses the index to jump directly — O(1)-ish per page, stable under inserts.
+
+**Q: When would you denormalize?**
+A: For read-heavy, latency-sensitive paths where joins are expensive — duplicate data or precompute aggregates, and handle the added write/consistency cost (triggers, app logic, or async updates).
+
+**Q: `DELETE` vs `TRUNCATE` vs `DROP`?**
+A: `DELETE` is row-by-row, logged, transactional, fires triggers; `TRUNCATE` fast-resets the table (minimal logging, resets identity, usually not row-trigger-firing); `DROP` removes the table entirely.
+
+**Q: How do you find a slow query in production?**
+A: Slow-query log / `pg_stat_statements`, then `EXPLAIN ANALYZE` the offender, check for scans/bad estimates/missing indexes, and fix (index, rewrite, or denormalize).
+
+---
 
 ## Revision Checklist
-- [ ] Execution order + join types
-- [ ] Composite/covering indexes + leftmost prefix
-- [ ] EXPLAIN + keyset pagination
-- [ ] Isolation levels, MVCC, locking, deadlocks
-- [ ] Normalization vs denormalization; sharding
+- [ ] Execution order + join/anti/semi
+- [ ] Composite (leftmost prefix) + covering + clustered indexes
+- [ ] EXPLAIN ANALYZE + keyset pagination + window functions
+- [ ] Isolation levels vs anomalies + MVCC
+- [ ] Locking, FOR UPDATE, deadlock handling
+- [ ] Normalization vs denormalization; replication/partitioning/sharding
+- [ ] Upsert; SQL vs NoSQL

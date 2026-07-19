@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b96602577cd18eb3",
+        "id": "ecb8d04a0fdd37a8",
         "type": "tabs",
         "children": [
           {
-            "id": "8042e34d7946eb07",
+            "id": "c049de5f8856b075",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "14 Revision/01 Cheat Sheets/05 Kafka Cheat Sheet.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "05 Kafka Cheat Sheet"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "14 Revision/01 Cheat Sheets/05 Kafka Cheat Sheet.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for 05 Kafka Cheat Sheet"
             }
           },
           {
@@ -200,13 +205,21 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "8042e34d7946eb07",
+  "active": "c049de5f8856b075",
   "lastOpenFiles": [
-    "14 Revision/01 Cheat Sheets/02 Spring Cheat Sheet.md",
-    "14 Revision/01 Cheat Sheets/01 Java Cheat Sheet.md",
-    "12 Interview Preparation/01 Technical Q&A/01 Core Java Q&A.md",
     "_work/audit.ps1",
     "_work",
+    "14 Revision/01 Cheat Sheets/05 Kafka Cheat Sheet.md",
+    "14 Revision/01 Cheat Sheets/04 Microservices Cheat Sheet.md",
+    "14 Revision/01 Cheat Sheets/06 Docker Cheat Sheet.md",
+    "14 Revision/01 Cheat Sheets/07 Kubernetes Cheat Sheet.md",
+    "14 Revision/01 Cheat Sheets/08 AWS Cheat Sheet.md",
+    "14 Revision/01 Cheat Sheets/09 System Design Cheat Sheet.md",
+    "14 Revision/01 Cheat Sheets/10 Git Cheat Sheet.md",
+    "_work/renumber_cs.ps1",
+    "14 Revision/01 Cheat Sheets/01 Java Cheat Sheet.md",
+    "14 Revision/01 Cheat Sheets/02 Spring Cheat Sheet.md",
+    "12 Interview Preparation/01 Technical Q&A/01 Core Java Q&A.md",
     "14 Revision/02 Interview Revision.md",
     "14 Revision/00 Revision Index.md",
     "03 Java/05 Collections Framework/03 List.md",
@@ -223,21 +236,12 @@
     "15 Templates/Daily Learning Template.md",
     "15 Templates/Revision Template.md",
     "15 Templates/System Design Template.md",
-    "15 Templates/Technology Template.md",
-    "Vault Workflows/Learning Workflow.md",
-    "Vault Workflows/Folder Notes.md",
-    "Vault Workflows/Revision Workflow.md",
-    "04 Spring/03 Spring MVC/00 Spring MVC Index.md",
     "Untitled.base",
-    "01 Learning Roadmaps/00 Learning Roadmaps Index.md",
-    "00 Dashboard/High Priority Dashboard.md",
     "00 Dashboard/High Priority Dashboard.base",
-    "03 Java/02 JVM Internals/00 JVM Internals Index.md",
     "Untitled.canvas",
     "_work/scan_chars.ps1",
     "_work/link_audit.ps1",
     "16 Bases/Performance.base",
-    "16 Bases/Reflection.base",
-    "16 Bases/Exception Handling.base"
+    "16 Bases/Reflection.base"
   ]
 }
