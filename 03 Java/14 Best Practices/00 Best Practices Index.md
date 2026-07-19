@@ -13,11 +13,24 @@ order: 0
 tags:
   - java
   - index
+related:
+  - "[[Java Index|Java]]"
+  - "[[Coding Best Practices]]"
+  - "[[API and Class Design]]"
+  - "[[Performance and Memory Best Practices]]"
 ---
 
 # Best Practices
 
 > Module index - part of the [[Java Index|Java]] learning path.
+
+## Overview
+The capstone: distilled engineering practices for writing Java that's correct, maintainable, and fast. Covers day-to-day coding rules, designing APIs and classes that are hard to misuse, and performance/memory discipline grounded in measurement.
+
+## Branches (expand each)
+- **[[Coding Best Practices]]** — immutability, interfaces, composition, `Optional`, equals/hashCode.
+- **[[API and Class Design]]** — minimal surface, factories/builders, evolving APIs safely.
+- **[[Performance and Memory Best Practices]]** — allocation, collection sizing, caching, lock scope.
 
 ## Learning Roadmap
 1. [[Coding Best Practices]]
