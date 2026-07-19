@@ -3,7 +3,7 @@ title: Interview Revision
 aliases:
   - Interview Revision
 domain: Revision
-module: Roadmaps and Dashboards
+module: ""
 status: Learning
 difficulty: Hard
 priority: High

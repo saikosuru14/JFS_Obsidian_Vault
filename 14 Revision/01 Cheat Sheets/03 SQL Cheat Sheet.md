@@ -18,45 +18,45 @@ tags:
 
 # SQL Cheat Sheet
 
-> Fast recall for databases. See [[Database Fundamentals]] for depth.
+> Mid-level recall for databases — indexing, transactions, and query tuning.
 
-## Query Order of Execution
-`FROM → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT`
+## Execution Order
+`FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT`
+(so column aliases from SELECT aren't visible in WHERE).
 
-## Joins
-- `INNER` = matching rows both sides.
-- `LEFT` = all left + matched right (nulls otherwise); `RIGHT` = mirror.
-- `FULL OUTER` = everything; `CROSS` = cartesian product.
-- Self-join for hierarchies; anti-join via `LEFT JOIN ... WHERE right.id IS NULL`.
+## Indexing (interview gold)
+- B-tree serves equality, range, prefix, and ORDER BY. Hash index = equality only.
+- **Composite index = leftmost-prefix rule**: `(a,b,c)` helps `a`, `a,b`, `a,b,c` — not `b` alone.
+- **Covering index**: query served entirely from the index (no table lookup).
+- Index selectivity matters; low-cardinality columns rarely help. Indexes slow writes + cost storage.
+- A function on a column (`WHERE UPPER(x)=…`) kills index use → use expression/functional indexes.
 
-## Aggregation
-- `COUNT/SUM/AVG/MIN/MAX` with `GROUP BY`; filter groups with `HAVING`.
-- Window functions: `ROW_NUMBER() / RANK() / DENSE_RANK() OVER (PARTITION BY ... ORDER BY ...)`.
+## Query Tuning
+- Read `EXPLAIN [ANALYZE]`: look for seq scans on big tables, bad row estimates, nested-loop vs hash join.
+- Avoid `SELECT *`; filter early; batch writes; keyset pagination (`WHERE id > :last LIMIT n`) over `OFFSET` for deep pages.
+- N+1 in ORMs → join/fetch or batch.
 
-## Indexing
-- B-tree indexes speed equality/range lookups and sorts; cost = slower writes + storage.
-- Composite index follows **leftmost-prefix** rule.
-- Covering index serves a query from the index alone.
+## Transactions / Isolation
+- ACID. Isolation vs anomalies: Read Uncommitted (dirty), Read Committed (default in PG), Repeatable Read (no non-repeatable; PG also blocks phantoms via MVCC), Serializable (full).
+- **MVCC** (PostgreSQL/InnoDB): readers don't block writers; each txn sees a snapshot.
+- Locking: row locks, `SELECT … FOR UPDATE` (pessimistic), version column (optimistic). Deadlocks → consistent lock order, short txns, retry on deadlock error.
 
-## Transactions / ACID
-- Atomicity, Consistency, Isolation, Durability.
-- Isolation levels vs anomalies: Read Uncommitted (dirty), Read Committed, Repeatable Read (no non-repeatable), Serializable (no phantom).
-
-## Normalization
-- 1NF atomic values; 2NF no partial dependency; 3NF no transitive dependency.
-- Denormalize for read-heavy workloads (trade writes/consistency for speed).
+## Modeling
+- Normalize to 3NF to remove redundancy; **denormalize** deliberately for read-heavy paths (accept write/consistency cost).
+- Scaling: read replicas (read scaling), partitioning (by range/hash), sharding (write scaling; needs a shard key).
 
 ## SQL vs NoSQL
-- SQL: strong schema, ACID, joins. NoSQL: flexible schema, horizontal scale, eventual consistency.
+- SQL: strong schema, ACID, joins, ad-hoc queries. NoSQL: flexible schema, horizontal scale, denormalized access patterns, eventual consistency. Choose by access pattern, not hype.
 
-## Top Interview One-Liners
-- `WHERE` filters rows before grouping; `HAVING` filters after.
-- `DELETE` (logged, rollback-able) vs `TRUNCATE` (fast, resets) vs `DROP` (removes table).
-- Index trade-off: faster reads, slower writes.
+## Sharp Interview Answers
+- Why isn't my index used? leftmost-prefix miss, function on column, low selectivity, small table.
+- `WHERE` vs `HAVING`; `DELETE` vs `TRUNCATE` vs `DROP`.
+- Offset vs keyset pagination; how MVCC avoids read locks.
+- Optimistic vs pessimistic locking; how to handle deadlocks.
 
 ## Revision Checklist
-- [ ] Execution order
-- [ ] Join types
-- [ ] Window functions
-- [ ] Isolation levels vs anomalies
-- [ ] Normalization forms
+- [ ] Execution order + join types
+- [ ] Composite/covering indexes + leftmost prefix
+- [ ] EXPLAIN + keyset pagination
+- [ ] Isolation levels, MVCC, locking, deadlocks
+- [ ] Normalization vs denormalization; sharding

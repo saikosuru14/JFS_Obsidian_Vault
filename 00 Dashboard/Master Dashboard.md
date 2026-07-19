@@ -2,16 +2,16 @@
 title: Master Dashboard
 aliases:
   - Master Dashboard
-domain: Revision
-module: Roadmaps and Dashboards
+domain: Dashboard
+module: ""
 status: Learning
 difficulty: Easy
 priority: High
 interview: 2
 revision: Weekly
-order: 3
+order: 0
 tags:
-  - revision
+  - dashboard
   - dashboard
 ---
 

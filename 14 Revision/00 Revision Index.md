@@ -18,28 +18,24 @@ tags:
 
 # Revision
 
-> Domain hub — fast-recall cheat sheets and the roadmaps/dashboards that tie the vault together.
+> Domain hub — fast-recall cheat sheets and a pre-interview checklist.
 
 ## Overview
-This is the last-mile revision layer. Use the cheat sheets for rapid recall before interviews, and the roadmaps/dashboards to navigate the whole vault and track progress.
+The last-mile revision layer: one-screen cheat sheets for rapid recall, plus a pre-interview checklist. This folder is **only** for revision material — roadmaps live in [[Learning Roadmaps]] and progress dashboards in [[Dashboard]].
 
-## Modules
-1. [[Cheat Sheets Index|Cheat Sheets]] — one-page recall sheets per technology.
-2. [[Roadmaps and Dashboards Index|Roadmaps & Dashboards]] — the master roadmap, vault index, and progress dashboards.
+## Contents
+1. [[Cheat Sheets Index|Cheat Sheets]] — one-page recall sheet per technology (Java, Spring, SQL, Git, Kafka, Docker, Kubernetes, AWS, System Design).
+2. [[Interview Revision]] — the last-mile pre-interview checklist.
 
 ## How to Revise
-- **Daily:** skim one or two cheat sheets; mark weak topics as `status: Need Revision`.
-- **Weekly:** open the [[Revision Dashboard]] (driven by the Revision base) to see what needs review.
-- **Before interviews:** run through all cheat sheets, then drill [[Interview]] Q&A.
-
-## Cheat Sheets
-- [[Java Cheat Sheet]] · [[Spring Cheat Sheet]] · [[SQL Cheat Sheet]]
-- [[Kafka Cheat Sheet]] · [[Docker Cheat Sheet]] · [[Kubernetes Cheat Sheet]]
-- [[AWS Cheat Sheet]] · [[System Design Cheat Sheet]]
+- **Daily:** skim a cheat sheet or two; mark shaky topics `status: Need Revision`.
+- **Weekly:** open the [[Revision Dashboard]] to see what needs review.
+- **Before interviews:** run all cheat sheets, then work through [[Interview Revision]] and drill [[Interview]] Q&A.
 
 ## Related
-- [[Vault Index]] — full navigation.
-- [[Interview]] — question banks and design practice.
+- [[Learning Roadmaps]] — where to start and in what order.
+- [[Dashboard]] — progress tracking dashboards.
+- [[Vault Index]] — full navigation map.
 
 ## Topic Tracker
 

@@ -2,16 +2,16 @@
 title: Vault Index
 aliases:
   - Vault Index
-domain: Revision
-module: Roadmaps and Dashboards
+domain: Dashboard
+module: ""
 status: Learning
 difficulty: Easy
 priority: High
 interview: 2
 revision: Monthly
-order: 4
+order: 0
 tags:
-  - revision
+  - dashboard
   - index
   - navigation
 ---

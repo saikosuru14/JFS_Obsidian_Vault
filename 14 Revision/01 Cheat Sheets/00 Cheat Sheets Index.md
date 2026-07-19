@@ -19,7 +19,7 @@ tags:
 
 > Module index - part of the [[Revision Index|Revision]] learning path.
 
-## Topics (in learning order)
+## Cheat Sheets
 1. [[Java Cheat Sheet]]
 2. [[Spring Cheat Sheet]]
 3. [[SQL Cheat Sheet]]
@@ -28,13 +28,10 @@ tags:
 6. [[Kubernetes Cheat Sheet]]
 7. [[AWS Cheat Sheet]]
 8. [[System Design Cheat Sheet]]
+9. [[Git Cheat Sheet]]
 
-## Suggested Study Order
-Work through the topics top to bottom; each builds on the previous one.
-
-## Prerequisites
-- None - this is the starting module.
+## How to Use
+One screen per technology for rapid recall. Skim daily; run all of them the day before an interview alongside [[Interview Revision]].
 
 ## Related
 - [[Revision Index|Revision]]
-- Next: [[Roadmaps and Dashboards Index|Roadmaps and Dashboards]]

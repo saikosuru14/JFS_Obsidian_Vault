@@ -17,43 +17,45 @@ tags:
 
 # Docker Cheat Sheet
 
-> Fast recall for [[Docker]]. See the [[Docker Index|Docker domain]] for depth.
+> Mid-level recall for [[Docker]] — image efficiency, security, and runtime gotchas.
 
-## Concepts
-- Image = read-only layered template; container = running instance.
-- Layers are cached; order Dockerfile from least- to most-frequently changing.
-- Container vs VM: containers share the host kernel (lighter, faster).
+## Model
+- Image = read-only layered template; container = writable layer on top. Container shares host kernel (lighter than a VM).
+- Each Dockerfile instruction = a cached layer. Order least→most frequently changing to maximize cache reuse.
+
+## Efficient Images
+- **Multi-stage build**: compile in a build stage, copy only the artifact into a slim runtime → small, no build tools shipped.
+- Small/secure base: `alpine`, **distroless**, or `-jre`/`jlink` runtime for Java.
+- Copy dependency manifests (`pom.xml`/`package.json`) and resolve deps *before* copying source → cache deps across code changes.
+- `.dockerignore` to shrink build context; BuildKit for cache mounts + parallelism.
 
 ## Common Commands
-```
+```bash
 docker build -t app:1.0 .
-docker run -d -p 8080:8080 --name app app:1.0
-docker ps / logs / exec -it app sh
-docker images / rmi / system prune
-docker compose up -d
+docker run -d -p 8080:8080 --memory=512m --cpus=1 --name app app:1.0
+docker logs -f app; docker exec -it app sh
+docker compose up -d; docker system prune -af
 ```
 
-## Dockerfile Essentials
-- `FROM`, `WORKDIR`, `COPY`, `RUN`, `EXPOSE`, `ENV`, `ENTRYPOINT` vs `CMD`.
-- Multi-stage build: compile in a build stage, copy only artifacts into a slim runtime image.
-- `.dockerignore` to shrink build context.
+## Runtime Gotchas
+- **PID 1 / signals**: use exec-form `ENTRYPOINT ["java","-jar","app.jar"]` so the process gets SIGTERM (graceful shutdown). Shell-form swallows signals.
+- **JVM in containers**: modern JDKs honor cgroup limits; set `-XX:MaxRAMPercentage` rather than fixed `-Xmx`.
+- `ENTRYPOINT` (fixed) vs `CMD` (default, overridable). `HEALTHCHECK` for liveness.
+- Volumes (managed, portable) vs bind mounts (host path). Don't store state in the container layer.
 
-## Storage & Networking
-- Volumes (managed, persistent) vs bind mounts (host path).
-- Bridge network (default), host, none; Compose creates a shared network by service name.
+## Security
+- Run as non-root (`USER`), read-only FS where possible, drop capabilities.
+- Scan images (Trivy/Grabber), pin base tags/digests, don't bake secrets into layers (they persist even if deleted later).
 
-## Best Practices
-- Small base images (alpine/distroless), pin versions, run as non-root, one process per container.
-- Combine `RUN` layers; leverage build cache.
-
-## Top Interview One-Liners
-- `ENTRYPOINT` (fixed) vs `CMD` (default args, overridable).
-- Why multi-stage? Small final image, no build tools shipped.
-- Volume vs bind mount: portability vs direct host access.
+## Sharp Interview Answers
+- Container vs VM; why multi-stage builds.
+- Why isn't my layer cache hitting? (deps copied after source; changing early layers).
+- ENTRYPOINT vs CMD; PID-1 signal handling.
+- How the JVM sees container memory.
 
 ## Revision Checklist
-- [ ] Image vs container vs layer
-- [ ] Dockerfile instructions
-- [ ] Multi-stage builds
-- [ ] Volumes vs bind mounts
-- [ ] Networking modes
+- [ ] Layers + cache ordering
+- [ ] Multi-stage + distroless
+- [ ] Signals/PID 1 + graceful shutdown
+- [ ] Resource limits + JVM cgroup awareness
+- [ ] Non-root + image scanning

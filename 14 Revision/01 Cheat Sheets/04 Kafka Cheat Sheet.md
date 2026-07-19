@@ -17,41 +17,46 @@ tags:
 
 # Kafka Cheat Sheet
 
-> Fast recall for [[Apache Kafka|Kafka]]. See the [[Kafka Index|Kafka domain]] for depth.
+> Mid-level recall for [[Apache Kafka|Kafka]] — guarantees, config, and operations.
 
-## Core Model
-- Topic → partitions → ordered, immutable log of records (offset per partition).
-- Order guaranteed **within a partition**, not across.
-- Partition key decides partition (same key → same partition → ordered).
+## Model
+- Topic → partitions → ordered, immutable, append-only log; offset per partition.
+- **Ordering only within a partition**; same key → same partition → ordered. Partitions = unit of parallelism + ordering.
+- Retention by time/size; **compaction** keeps latest value per key (changelog/state).
 
-## Producers
-- `acks=0` (fire-forget), `1` (leader), `all` (ISR) — durability vs latency.
-- Idempotent producer prevents duplicates on retry; enables exactly-once with transactions.
+## Producer (durability vs latency)
+- `acks=0|1|all`; `all` + `min.insync.replicas=2` (RF=3) tolerates one broker loss without data loss.
+- **Idempotent producer** (`enable.idempotence=true`) dedupes retries; needed for exactly-once. `max.in.flight ≤ 5` to keep ordering with retries.
+- Batching: `linger.ms` + `batch.size` for throughput; `compression.type` (lz4/zstd).
 
-## Consumers
-- Consumer group: each partition consumed by exactly one consumer in the group.
-- More consumers than partitions → idle consumers.
-- Rebalancing on membership change; commit offsets (auto vs manual).
+## Consumer
+- Consumer group: each partition consumed by exactly one member; more consumers than partitions → idle ones.
+- Rebalancing strategies: prefer **cooperative-sticky** (incremental, avoids stop-the-world). Static membership (`group.instance.id`) reduces rebalances.
+- Offsets: commit after processing (at-least-once); manual commit for control. `max.poll.interval.ms` too low + slow processing → kicked from group.
+- **Consumer lag** is the key health metric.
 
-## Reliability
-- Replication factor N; leader + followers; **ISR** = in-sync replicas.
-- Delivery: at-most-once, at-least-once (default, idempotent consumers needed), exactly-once (txns).
-- `min.insync.replicas` with `acks=all` for durability.
+## Delivery Semantics
+- At-most-once (commit before process), at-least-once (default — make consumers **idempotent**), exactly-once (idempotent producer + transactions + `read_committed` / EOS in Streams).
 
-## Storage
-- Retention by time/size; log compaction keeps latest value per key.
+## Reliability & Ops
+- RF, leader + followers, **ISR**; unclean leader election off for safety.
+- DLQ / dead-letter topic for poison messages; retry topics with backoff.
+- Schema Registry: Avro/Protobuf with compatibility (BACKWARD is common) for safe evolution.
+- KRaft replaces ZooKeeper (metadata quorum) in modern clusters.
 
-## Ecosystem
-- Connect (source/sink), Streams (stateful processing), Schema Registry (Avro/Protobuf), KRaft (no ZooKeeper).
+## Sizing / Design
+- Partition count = target throughput / per-partition throughput, and ≥ max consumers; hard to reduce later.
+- Hot partitions from skewed keys → better key or custom partitioner.
 
-## Top Interview One-Liners
-- How is ordering guaranteed? Per partition, via key.
-- Exactly-once? Idempotent producer + transactions + read-committed.
-- Scale consumers? Add partitions (up to consumer count).
+## Sharp Interview Answers
+- How is ordering guaranteed? per partition via key.
+- Exactly-once: idempotent producer + transactions + read_committed.
+- Why is my consumer rebalancing / lagging? slow processing vs `max.poll.interval.ms`, too few partitions, GC pauses.
+- Compaction vs retention; ISR and `acks=all`.
 
 ## Revision Checklist
-- [ ] Partitions, offsets, ordering
-- [ ] acks and idempotence
-- [ ] Consumer groups & rebalancing
-- [ ] ISR and delivery semantics
-- [ ] Compaction vs retention
+- [ ] Partitions/offsets/ordering + keys
+- [ ] acks, idempotence, min.insync.replicas
+- [ ] Consumer groups, cooperative-sticky rebalancing, lag
+- [ ] Delivery semantics + EOS
+- [ ] Schema evolution, DLQ, KRaft

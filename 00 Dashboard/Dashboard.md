@@ -37,6 +37,7 @@ Each domain is a numbered, modular learning path with its own index and a live b
 - [[Interview Dashboard]] — high-value interview topics.
 - [[Revision Dashboard]] — what needs review.
 - [[High Priority Dashboard]] — high-priority topics.
+- [[Master Dashboard]] — all topics with the live master table.
 - [[Master Learning Tracker]] — everything, grouped by domain.
 
 ## Support

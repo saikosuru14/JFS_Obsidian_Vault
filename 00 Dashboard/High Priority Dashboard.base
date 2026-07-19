@@ -1,6 +1,6 @@
 filters:
   and:
-    - 'note.priority == "High"'
+    - note.priority == "High"
 properties:
   note.order:
     displayName: "#"
@@ -24,13 +24,11 @@ views:
   - type: table
     name: High Priority
     order:
-      - note.domain
-      - note.order
+      - domain
+      - order
       - file.name
-      - note.status
-      - note.interview
+      - status
+      - interview
     sort:
-      - property: note.domain
-        direction: ASC
-      - property: note.order
+      - property: order
         direction: ASC

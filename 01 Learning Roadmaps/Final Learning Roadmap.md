@@ -2,16 +2,16 @@
 title: Final Learning Roadmap
 aliases:
   - Final Learning Roadmap
-domain: Revision
-module: Roadmaps and Dashboards
+domain: Learning
+module: Roadmaps
 status: Learning
 difficulty: Medium
 priority: High
 interview: 2
 revision: Monthly
-order: 1
+order: 3
 tags:
-  - revision
+  - learning
   - roadmap
 ---
 

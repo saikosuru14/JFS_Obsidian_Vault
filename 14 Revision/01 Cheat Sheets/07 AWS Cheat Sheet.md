@@ -17,39 +17,40 @@ tags:
 
 # AWS Cheat Sheet
 
-> Fast recall for [[AWS]]. See the [[AWS Index|AWS domain]] for depth.
+> Mid-level recall for [[AWS]] — service selection and the trade-offs interviewers probe.
 
-## Compute
-- EC2 (VMs), Lambda (serverless functions), ECS/Fargate (containers), EKS (Kubernetes).
-- Auto Scaling groups + launch templates; scale on metrics.
+## Compute (pick by workload)
+- **EC2** (full control), **Lambda** (event-driven, 15-min max, cold starts, /tmp, concurrency limits), **ECS/Fargate** (containers, no node mgmt), **EKS** (managed k8s).
+- Auto Scaling groups + target tracking; scale on the metric that reflects load.
 
 ## Storage & Databases
-- S3 (object storage, 11 nines durability, lifecycle/versioning), EBS (block), EFS (file).
-- RDS (managed relational), DynamoDB (managed NoSQL, single-digit ms), ElastiCache (Redis/Memcached).
+- **S3**: object store, 11 nines durability, lifecycle/versioning, event notifications; not a filesystem.
+- EBS (block, single-AZ, attach to one EC2) vs EFS (NFS, multi-AZ shared).
+- **RDS** (managed relational) vs **Aurora** (cloud-native, faster failover/replicas) vs **DynamoDB** (managed NoSQL, single-digit-ms, partition-key design is everything, on-demand vs provisioned).
+- ElastiCache (Redis) for caching/sessions/rate-limits.
 
 ## Networking
-- VPC = private network; subnets (public/private), route tables, IGW/NAT.
-- Security Groups (stateful, instance-level) vs NACLs (stateless, subnet-level).
-- Route 53 (DNS), ELB (ALB L7 / NLB L4), API Gateway, CloudFront (CDN).
+- VPC = private network; public/private subnets, route tables, IGW (public), NAT (private egress).
+- **Security Groups** (stateful, instance-level, allow-only) vs **NACLs** (stateless, subnet-level, allow+deny).
+- ALB (L7, path/host routing) vs NLB (L4, ultra-low latency, static IP). Route 53 (DNS + health-based routing), CloudFront (CDN/edge).
 
-## Messaging & Events
-- SQS (queue, decoupling), SNS (pub/sub fan-out), EventBridge (event bus/routing).
+## Messaging (know the differences)
+- **SQS** (queue, decouple, at-least-once, one consumer group), **SNS** (pub/sub fan-out), **Kinesis** (ordered streaming, shards, replay), **EventBridge** (event bus + routing/filtering).
 
-## Security & Identity
-- IAM users/roles/policies; least privilege; roles for service-to-service.
-- Secrets Manager / SSM Parameter Store for secrets.
+## Security & Ops
+- IAM: roles > long-lived keys; least privilege; policies (identity vs resource); use roles for service-to-service.
+- Secrets Manager / SSM Parameter Store; KMS for encryption.
+- Observability: CloudWatch (metrics/logs/alarms), X-Ray (tracing). Well-Architected pillars: ops, security, reliability, performance, cost, sustainability.
 
-## Management & Monitoring
-- CloudWatch (metrics/logs/alarms), CloudFormation (IaC), Systems Manager, AWS CLI.
-
-## Top Interview One-Liners
-- SG vs NACL: stateful/instance vs stateless/subnet.
-- SQS vs SNS: queue (one consumer group) vs pub/sub fan-out.
-- S3 vs EBS vs EFS: object vs block vs shared file.
+## Sharp Interview Answers
+- EC2 vs Lambda vs Fargate; Lambda cold-start/limits.
+- S3 vs EBS vs EFS; RDS vs Aurora vs DynamoDB.
+- SG vs NACL; ALB vs NLB.
+- SQS vs SNS vs Kinesis vs EventBridge.
 
 ## Revision Checklist
-- [ ] Compute options and when to use each
-- [ ] S3/RDS/DynamoDB selection
-- [ ] VPC, SG vs NACL
-- [ ] SQS vs SNS vs EventBridge
-- [ ] IAM roles and least privilege
+- [ ] Compute options + when each
+- [ ] S3/EBS/EFS + RDS/Aurora/DynamoDB
+- [ ] VPC, SG vs NACL, ALB vs NLB
+- [ ] SQS/SNS/Kinesis/EventBridge
+- [ ] IAM least privilege + observability

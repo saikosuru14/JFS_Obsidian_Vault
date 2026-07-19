@@ -17,45 +17,55 @@ tags:
 
 # Spring Cheat Sheet
 
-> Fast recall for [[Spring]]. See the [[Spring Index|Spring domain]] for depth.
+> Mid-level recall for [[Spring]] — the gotchas that come up in real services and interviews.
 
 ## Core / IoC
-- IoC container manages bean lifecycle; DI via constructor (preferred), setter, field.
-- Bean scopes: `singleton` (default), `prototype`, `request`, `session`.
-- `@Component/@Service/@Repository/@Controller`; `@Configuration` + `@Bean`.
-- `@Autowired`, `@Qualifier`, `@Primary`, `@Value`, `@Profile`.
+- DI: constructor (preferred — immutable, testable, fails fast on cycles), setter, field (avoid).
+- Scopes: `singleton` (default, one per container), `prototype`, `request`, `session`.
+- Proxies: interface → JDK dynamic proxy; class → CGLIB. `@Configuration` beans are CGLIB-enhanced so inter-`@Bean` calls return the singleton.
+- Circular deps: constructor cycles fail; break with `@Lazy` or redesign.
+
+## Transactions (@Transactional pitfalls)
+- **Self-invocation** (calling a `@Transactional` method from the same bean) bypasses the proxy → no transaction. Split into another bean.
+- Only **unchecked** exceptions roll back by default; use `rollbackFor` for checked.
+- Propagation: `REQUIRED` (default, joins), `REQUIRES_NEW` (suspends), `NESTED` (savepoint). Isolation maps to DB level.
+- `@Transactional` on private/final methods = no proxy = ignored.
+- Keep transactions short; don't do remote calls inside them.
 
 ## Spring Boot
-- Auto-configuration + starters; `@SpringBootApplication` = `@Configuration` + `@EnableAutoConfiguration` + `@ComponentScan`.
-- External config precedence: CLI args > env > `application-{profile}.yml` > `application.yml`.
-- Actuator exposes health/metrics endpoints.
+- `@SpringBootApplication` = `@Configuration` + `@EnableAutoConfiguration` + `@ComponentScan`.
+- Config precedence: CLI args > env vars > `application-{profile}.yml` > `application.yml`.
+- Conditional beans: `@ConditionalOnProperty/Class/MissingBean`; `@Profile` for env-specific.
+- Connection pool: **HikariCP** default — size it (`maximum-pool-size`) to DB capacity, not thread count.
+- Actuator: `/health`, `/metrics`, Micrometer → Prometheus; enable liveness/readiness groups for k8s.
 
 ## Web / MVC
-- Request flow: DispatcherServlet → HandlerMapping → Controller → ViewResolver/`@ResponseBody`.
-- `@RestController`, `@RequestMapping`, `@GetMapping`, `@PathVariable`, `@RequestParam`, `@RequestBody`.
-- `@ControllerAdvice` + `@ExceptionHandler` for global error handling; `@Valid` for validation.
-- `ResponseEntity` for status + headers + body.
+- Flow: DispatcherServlet → HandlerMapping → Controller → `@ResponseBody`/ViewResolver.
+- `@ControllerAdvice` + `@ExceptionHandler` for consistent error bodies (never leak stack traces).
+- `@Valid` + `MethodArgumentNotValidException`; `ResponseEntity` for status/headers.
+- WebFlux only when you need reactive end-to-end (don't mix blocking JDBC into it).
 
 ## Data JPA / Hibernate
-- `JpaRepository` gives CRUD + paging; derived queries, `@Query` (JPQL/native), Specifications.
-- Entity states: transient → persistent → detached → removed. Dirty checking flushes changes.
-- Lazy vs eager fetch; the **N+1 problem** → fix with `JOIN FETCH`/entity graph.
-- First-level cache = session; second-level cache = shared, optional.
-- Optimistic (`@Version`) vs pessimistic locking.
+- **N+1**: fix with `JOIN FETCH` / `@EntityGraph`; watch lazy access outside a session (`LazyInitializationException`).
+- Entity states: transient → persistent → detached → removed; dirty checking flushes at commit.
+- `@Transactional(readOnly=true)` for reads (skips dirty checking, hints replicas).
+- Caches: L1 = session; L2 = shared (optional). Pagination: prefer keyset over large offsets.
+- Optimistic (`@Version`) for low contention; pessimistic (`SELECT … FOR UPDATE`) for hot rows.
 
 ## Security
-- Filter chain intercepts requests; `AuthenticationManager` + `UserDetailsService` + `PasswordEncoder` (BCrypt).
-- Authentication (who) vs authorization (`@PreAuthorize`, roles).
-- Stateless APIs: JWT; delegated auth: OAuth2. CSRF matters for browser sessions.
+- Filter chain → `AuthenticationManager` → `UserDetailsService` + `PasswordEncoder` (BCrypt/Argon2).
+- Stateless APIs: JWT (validate signature/expiry; short-lived + refresh). Delegated: OAuth2/OIDC. CSRF matters for cookie-based sessions, not stateless bearer tokens.
+- Method security: `@PreAuthorize("hasRole('ADMIN')")`.
 
-## Top Interview One-Liners
-- Why constructor injection? Immutability + easy testing + fail-fast.
-- Bean scope default = singleton (one per container).
-- How does `@Transactional` work? AOP proxy around the method.
+## Sharp Interview Answers
+- Why does `@Transactional` sometimes "not work"? self-invocation / private / checked exception.
+- Constructor vs field injection; `@Configuration` proxying.
+- How Boot auto-config works (`spring.factories`/`AutoConfiguration.imports` + conditionals).
+- Fixing N+1; optimistic vs pessimistic locking.
 
 ## Revision Checklist
-- [ ] IoC, DI types, scopes
-- [ ] Boot auto-config + config precedence
-- [ ] Request lifecycle
-- [ ] JPA states, N+1, caching, locking
+- [ ] DI types, scopes, proxying
+- [ ] @Transactional propagation + pitfalls
+- [ ] Boot auto-config + config precedence + Hikari
+- [ ] JPA N+1, caching, locking
 - [ ] Security filter chain, JWT vs OAuth2
