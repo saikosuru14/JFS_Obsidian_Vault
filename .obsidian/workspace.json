@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "ecb8d04a0fdd37a8",
+        "id": "d32ff361cd3ca16a",
         "type": "tabs",
         "children": [
           {
-            "id": "c049de5f8856b075",
+            "id": "c30a1e90d7eafb99",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "14 Revision/01 Cheat Sheets/05 Kafka Cheat Sheet.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "05 Kafka Cheat Sheet"
+              "title": "New tab"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "14 Revision/01 Cheat Sheets/05 Kafka Cheat Sheet.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 05 Kafka Cheat Sheet"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "15 Bases/Java.base",
-                "linksCollapsed": false,
+                "linksCollapsed": true,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Java"
+              "title": "Outgoing links"
             }
           },
           {
@@ -156,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "15 Bases/Java.base",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Java"
+              "title": "Outline"
             }
           },
           {
@@ -186,11 +179,12 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 279.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -205,11 +199,25 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c049de5f8856b075",
+  "active": "c30a1e90d7eafb99",
   "lastOpenFiles": [
-    "_work/audit.ps1",
+    "03 Java/05 Collections Framework/Collections Framework Map.canvas",
+    "03 Java/05 Collections Framework/Java_Collections_Framework.canvas",
+    "03 Java/05 Collections Framework/JCF.canvas",
+    "03 Java/05 Collections Framework/Unconfirmed 117304.crdownload",
+    "03 Java/01 Java Fundamentals/00 Java Fundamentals Index.md",
+    "_work/check_canvas.ps1",
     "_work",
+    "03 Java/05 Collections Framework/01 Collections Framework.md",
+    "03 Java/05 Collections Framework/18 Concurrent Collections.md",
+    "03 Java/05 Collections Framework/12 Map.md",
+    "03 Java/05 Collections Framework/08 HashSet.md",
+    "03 Java/05 Collections Framework/07 Set.md",
+    "03 Java/05 Collections Framework/05 LinkedList.md",
+    "Excalidraw/00 Excalidraw Index.md",
+    "14 Revision/01 Cheat Sheets/00 Cheat Sheets Index.md",
     "14 Revision/01 Cheat Sheets/05 Kafka Cheat Sheet.md",
+    "_work/audit.ps1",
     "14 Revision/01 Cheat Sheets/04 Microservices Cheat Sheet.md",
     "14 Revision/01 Cheat Sheets/06 Docker Cheat Sheet.md",
     "14 Revision/01 Cheat Sheets/07 Kubernetes Cheat Sheet.md",
@@ -226,22 +234,10 @@
     "14 Revision/01 Cheat Sheets/09 Git Cheat Sheet.md",
     "00 Dashboard/Vault Index.md",
     "00 Dashboard/Master Dashboard.md",
-    "01 Learning Roadmaps/Final Learning Roadmap.md",
     "_work/revfix_v1.ps1",
-    "14 Revision/02 Roadmaps and Dashboards/02 Interview Revision.md",
-    "Java Cheat Sheet.md",
-    "01 Learning Roadmaps/Study Strategy.md",
-    "14 Revision/02 Roadmaps and Dashboards/00 Roadmaps and Dashboards Index.md",
-    "15 Templates/00 Templates Index.md",
-    "15 Templates/Daily Learning Template.md",
-    "15 Templates/Revision Template.md",
-    "15 Templates/System Design Template.md",
     "Untitled.base",
     "00 Dashboard/High Priority Dashboard.base",
-    "Untitled.canvas",
     "_work/scan_chars.ps1",
-    "_work/link_audit.ps1",
-    "16 Bases/Performance.base",
-    "16 Bases/Reflection.base"
+    "_work/link_audit.ps1"
   ]
 }

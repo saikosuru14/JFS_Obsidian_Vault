@@ -14,9 +14,6 @@ tags:
   - java
   - index
 ---
-
-# Java Fundamentals
-
 > Module index - part of the [[Java Index|Java]] learning path.
 
 ## Learning Roadmap

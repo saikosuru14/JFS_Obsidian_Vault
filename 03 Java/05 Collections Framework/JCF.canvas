@@ -1,0 +1,32 @@
+{
+	"nodes":[
+		{"id":"c9596b9b111853ed","type":"file","file":"03 Java/05 Collections Framework/04 ArrayList.md","x":-952,"y":759,"width":400,"height":400},
+		{"id":"09831aee3be24344","type":"file","file":"03 Java/05 Collections Framework/05 LinkedList.md","x":-194,"y":751,"width":400,"height":400},
+		{"id":"6e976e6201927837","type":"file","file":"03 Java/05 Collections Framework/06 Vector.md","x":640,"y":751,"width":400,"height":400},
+		{"id":"869d8694cdf83c3a","type":"file","file":"03 Java/05 Collections Framework/03 List.md","x":-194,"y":-80,"width":400,"height":400},
+		{"id":"fd1ba6930e5da59c","type":"file","file":"03 Java/05 Collections Framework/08 HashSet.md","x":1360,"y":751,"width":400,"height":400},
+		{"id":"a506e9ebef0d2c10","type":"file","file":"03 Java/05 Collections Framework/09 LinkedHashSet.md","x":2040,"y":751,"width":400,"height":400},
+		{"id":"2c038d819de7c48a","type":"file","file":"03 Java/05 Collections Framework/10 TreeSet.md","x":2720,"y":751,"width":400,"height":400},
+		{"id":"b795c33a830f4ede","type":"file","file":"03 Java/05 Collections Framework/11 Queue.md","x":840,"y":-80,"width":400,"height":400},
+		{"id":"31bc0dad399aa1cb","type":"file","file":"03 Java/05 Collections Framework/13 HashMap.md","x":3800,"y":751,"width":400,"height":400},
+		{"id":"2f78ae5ddcb55d6d","type":"file","file":"03 Java/05 Collections Framework/14 LinkedHashMap.md","x":4520,"y":751,"width":400,"height":400},
+		{"id":"65a5f1fee0f6bc08","type":"file","file":"03 Java/05 Collections Framework/15 TreeMap.md","x":5240,"y":751,"width":400,"height":400},
+		{"id":"0edfb52f7c765646","type":"file","file":"03 Java/05 Collections Framework/12 Map.md","x":4520,"y":-80,"width":400,"height":400},
+		{"id":"4ae3646b2185dcaa","type":"file","file":"03 Java/05 Collections Framework/17 ConcurrentHashMap.md","x":5960,"y":751,"width":400,"height":400},
+		{"id":"0395c6f25d33ec49","type":"file","file":"03 Java/05 Collections Framework/18 Concurrent Collections.md","x":6360,"y":-80,"width":400,"height":400},
+		{"id":"6bdb3cf61fe58d24","type":"file","file":"03 Java/05 Collections Framework/07 Set.md","x":2040,"y":-80,"width":400,"height":400},
+		{"id":"e21c6436da327782","type":"file","file":"03 Java/05 Collections Framework/01 Collections Framework.md","x":2840,"y":-1600,"width":400,"height":400}
+	],
+	"edges":[
+		{"id":"4edb12fbacc6c73c","fromNode":"869d8694cdf83c3a","fromSide":"bottom","toNode":"c9596b9b111853ed","toSide":"top"},
+		{"id":"3751193a3a0c5102","fromNode":"869d8694cdf83c3a","fromSide":"bottom","toNode":"09831aee3be24344","toSide":"top"},
+		{"id":"f7c388a728fe4996","fromNode":"869d8694cdf83c3a","fromSide":"bottom","toNode":"6e976e6201927837","toSide":"top"},
+		{"id":"3170843cb8bb5b67","fromNode":"6bdb3cf61fe58d24","fromSide":"bottom","toNode":"fd1ba6930e5da59c","toSide":"top"},
+		{"id":"d2270aaef1ec8639","fromNode":"6bdb3cf61fe58d24","fromSide":"bottom","toNode":"a506e9ebef0d2c10","toSide":"top"},
+		{"id":"a981f278c7e04a17","fromNode":"6bdb3cf61fe58d24","fromSide":"bottom","toNode":"2c038d819de7c48a","toSide":"top"},
+		{"id":"566faef5328cbd0c","fromNode":"0edfb52f7c765646","fromSide":"bottom","toNode":"31bc0dad399aa1cb","toSide":"top"},
+		{"id":"8de35e62ba51d736","fromNode":"0edfb52f7c765646","fromSide":"bottom","toNode":"2f78ae5ddcb55d6d","toSide":"top"},
+		{"id":"e99213141dec4eb2","fromNode":"0edfb52f7c765646","fromSide":"bottom","toNode":"65a5f1fee0f6bc08","toSide":"top"},
+		{"id":"95bca440af7ef1c4","fromNode":"0395c6f25d33ec49","fromSide":"bottom","toNode":"4ae3646b2185dcaa","toSide":"top"}
+	]
+}
