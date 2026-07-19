@@ -1,0 +1,42 @@
+filters:
+  and:
+    - file.inFolder("06 Microservices")
+properties:
+  note.order:
+    displayName: "#"
+  file.name:
+    displayName: Topic
+  note.module:
+    displayName: Module
+  note.status:
+    displayName: Status
+  note.difficulty:
+    displayName: Difficulty
+  note.priority:
+    displayName: Priority
+  note.revision:
+    displayName: Revision
+  note.interview:
+    displayName: Interview
+  note.tags:
+    displayName: Tags
+views:
+  - type: table
+    name: Microservices - Learning Path
+    groupBy:
+      property: module
+      direction: ASC
+    order:
+      - order
+      - file.name
+      - status
+      - difficulty
+      - priority
+      - interview
+      - revision
+      - tags
+    sort:
+      - property: order
+        direction: ASC
+      - property: file.name
+        direction: ASC

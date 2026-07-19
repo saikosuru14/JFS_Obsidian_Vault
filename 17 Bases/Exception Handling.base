@@ -1,0 +1,32 @@
+filters:
+  and:
+    - 'file.inFolder("04 Java")'
+    - 'note.module == "Exception Handling"'
+properties:
+  note.order:
+    displayName: "#"
+  file.name:
+    displayName: Topic
+  note.module:
+    displayName: Module
+  note.difficulty:
+    displayName: Difficulty
+  note.status:
+    displayName: Status
+  note.interview:
+    displayName: Interview
+  note.revision:
+    displayName: Revision
+views:
+  - type: table
+    name: Exception Handling - Learning Order
+    order:
+      - note.order
+      - file.name
+      - note.difficulty
+      - note.status
+      - note.interview
+      - note.revision
+    sort:
+      - property: note.order
+        direction: ASC
