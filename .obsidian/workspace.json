@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "773705e5a1b7555f",
+        "id": "cb130c7b4f4134ca",
         "type": "tabs",
         "children": [
           {
-            "id": "d851878bc416b93f",
+            "id": "fcce453903b87c33",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "03 DSA/05 Hashing/00 Hashing Index.md",
-                "mode": "source",
-                "source": false
+                "aFile": "README.md",
+                "bFile": "README.md",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "00 Hashing Index"
+              "icon": "diff",
+              "title": "Diff: README  (Working Tree)"
             }
           }
         ]
@@ -156,13 +156,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "03 DSA/05 Hashing/04 Frequency Counting Pattern.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 04 Frequency Counting Pattern"
+              "title": "Outline"
             }
           },
           {
@@ -196,54 +195,56 @@
     "hiddenItems": {
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
       "command-palette:Open command palette": false,
+      "templates:Insert template": false,
       "bases:Create new base": false,
-      "obsidian-excalidraw-plugin:New drawing": false,
       "obsidian-git:Open Git source control": false,
-      "templater-obsidian:Templater": false
+      "templater-obsidian:Templater": false,
+      "mermaid-flow:Mermaid Flow Editor": false
     }
   },
-  "active": "d851878bc416b93f",
+  "active": "fcce453903b87c33",
   "lastOpenFiles": [
-    "Excalidraw/Spring_Startup_Internals.excalidraw.md",
-    "Canvas/Untitled.canvas",
+    "01 Learning Roadmaps/Daily Learning Routine.md",
+    "01 Learning Roadmaps/Final Learning Roadmap.md",
+    "01 Learning Roadmaps/Career Progression.md",
+    "01 Learning Roadmaps/Study Strategy.md",
+    "16 Templates/Daily Learning Template.md",
+    "16 Templates/Technology Template.md",
+    "01 Learning Roadmaps/00 Learning Roadmaps Index.md",
+    "01 Learning Roadmaps/Learning Milestones.md",
+    "01 Learning Roadmaps/Java Full Stack Roadmap.md",
+    "00 Dashboard/Quick Start.md",
+    "00 Dashboard/Revision Dashboard.base",
+    "00 Dashboard/Revision Dashboard.md",
+    "00 Dashboard/Master Dashboard.md",
+    "00 Dashboard/Learning Dashboard.base",
+    "00 Dashboard/High Priority Dashboard.md",
+    "00 Dashboard/High Priority Dashboard.base",
+    "README.md",
+    "Vault Workflows/Folder Notes.md",
+    "Vault Workflows/Learning Workflow.md",
+    "Vault Workflows/Revision Workflow.md",
+    "Excalidraw/Learning_Flow.excalidraw.md",
+    "02 Computer Science/02 SOLID Principles/00 SOLID Principles.md",
+    "00 Dashboard/Vault Index.md",
+    "00 Dashboard/Interview Dashboard.base",
+    "00 Dashboard/Learning Dashboard.md",
+    "00 Dashboard/Dashboard.md",
+    "18 Resources/Books.md",
     "Excalidraw/JVM_Memory_Layout.excalidraw.md",
-    "04 Java/03 Memory Management/07 Garbage Collection Overview.md",
-    "04 Java/03 Memory Management/04 Young Generation.md",
-    "04 Java/03 Memory Management/01 Java Memory Model.md",
-    "Excalidraw/SpringBeanLifeCycle.excalidraw.md",
-    "03 DSA/05 Hashing/04 Frequency Counting Pattern.md",
+    "04 Java/01 Java Fundamentals/01 History of Java.md",
+    "04 Java/01 Java Fundamentals/02 JDK vs JRE vs JVM.md",
+    "Canvas/Untitled.canvas",
     "Canvas",
-    "03 DSA/05 Hashing/01 Hash Tables.md",
-    "03 DSA/05 Hashing/00 Hashing Index.md",
-    "05 Microservices/02 Service Discovery and Config/01 Service Discovery.md",
     "_work/fixbases.ps1",
-    "03 DSA/11 Greedy and Patterns/04 Interview Strategy.md",
-    "03 DSA/11 Greedy and Patterns/03 Common Coding Patterns.md",
-    "03 DSA/11 Greedy and Patterns/02 Greedy vs DP.md",
-    "03 DSA/11 Greedy and Patterns/01 Greedy Approach.md",
-    "03 DSA/11 Greedy and Patterns/00 Greedy and Patterns Index.md",
-    "03 DSA/10 Dynamic Programming/03 Common DP Patterns.md",
-    "03 DSA/10 Dynamic Programming/02 Memoization vs Tabulation.md",
-    "03 DSA/10 Dynamic Programming/01 DP Fundamentals.md",
-    "03 DSA/10 Dynamic Programming/00 Dynamic Programming Index.md",
-    "03 DSA/09 Recursion and Backtracking/03 Divide and Conquer.md",
-    "03 DSA/09 Recursion and Backtracking/02 Backtracking.md",
-    "03 DSA/09 Recursion and Backtracking/01 Recursion.md",
-    "03 DSA/09 Recursion and Backtracking/00 Recursion and Backtracking Index.md",
-    "03 DSA/08 Sorting and Searching/03 QuickSort and MergeSort.md",
-    "03 DSA/08 Sorting and Searching/02 Binary Search.md",
     "03 DSA/11 Greedy and Patterns",
     "03 DSA/10 Dynamic Programming",
     "03 DSA/09 Recursion and Backtracking",
     "03 DSA/08 Sorting and Searching",
-    "03 DSA/07 Graphs",
-    "03 DSA/06 Trees",
-    "03 DSA/05 Hashing",
-    "03 DSA/04 Stacks and Queues",
     "04 Java/05 Collections Framework/JCF.canvas",
     "04 Java/05 Collections Framework/Java_Collections_Framework.canvas",
     "04 Java/05 Collections Framework/Collections Framework Map.canvas",

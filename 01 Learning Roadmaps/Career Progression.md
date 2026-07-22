@@ -16,8 +16,14 @@ tags:
 # Career Progression
 
 Fresher
-→ Junior Backend Engineer
-→ Java Developer
-→ Java Full Stack Engineer
+→ 👨‍💻 Trainee Software Engineer (ivy)
+→  👨‍💻Software Engineer (ivy) -> 👨‍💻SDE I (Entain India)
+→ SDE II (Upcoming)
 → Senior Software Engineer
 → Staff Engineer
+
+
+2018                           2022                               2023                              2025                            Present
+│      🎓(B.Tech CSE)      │                                     │                                    │                                      │
+├────────────────────┼────────────────────┼────────────────────┼─────────────────────►
+																👨‍💻SDE I 

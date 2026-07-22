@@ -1,6 +1,6 @@
 filters:
   and:
-    - 'note.status == "Learning"'
+    - note.status == "Learning"
 properties:
   note.order:
     displayName: "#"
@@ -24,11 +24,11 @@ views:
   - type: table
     name: Currently Learning
     order:
-      - note.domain
+      - domain
       - file.name
-      - note.status
-      - note.difficulty
-      - note.interview
+      - status
+      - difficulty
+      - interview
     sort:
-      - property: note.domain
+      - property: domain
         direction: ASC

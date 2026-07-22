@@ -1,6 +1,6 @@
 filters:
   and:
-    - 'note.status == "Need Revision"'
+    - note.status == "Need Revision"
 properties:
   note.order:
     displayName: "#"
@@ -24,10 +24,10 @@ views:
   - type: table
     name: Needs Revision
     order:
-      - note.domain
+      - domain
       - file.name
-      - note.revision
-      - note.status
+      - revision
+      - status
     sort:
-      - property: note.domain
+      - property: domain
         direction: ASC

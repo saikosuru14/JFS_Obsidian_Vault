@@ -1,4 +1,4 @@
-﻿---
+---
 title: README
 domain: README.md
 module: ""
@@ -13,7 +13,7 @@ tags:
   - readme.md
 ---
 
-# Java Full Stack Engineering Vault v2
+# Java Full Stack Engineering Vault
 
 Welcome!
 

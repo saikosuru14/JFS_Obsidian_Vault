@@ -1,6 +1,6 @@
 filters:
   and:
-    - 'note.interview >= 4'
+    - note.interview >= 4
 properties:
   note.order:
     displayName: "#"
@@ -24,13 +24,13 @@ views:
   - type: table
     name: High-Value Interview Topics
     order:
-      - note.domain
+      - domain
       - file.name
-      - note.interview
-      - note.difficulty
-      - note.status
+      - interview
+      - difficulty
+      - status
     sort:
-      - property: note.interview
+      - property: interview
         direction: DESC
-      - property: note.domain
+      - property: domain
         direction: ASC
